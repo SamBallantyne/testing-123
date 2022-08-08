@@ -1,17 +1,17 @@
 import SwiftUI
 
-struct HeartbeatMsg : Codable {
-    var latestEventId: Int
+public struct HeartbeatMsg : Codable {
+    public var latestEventId: Int
 }
 
-class EventIdProvider : ObservableObject {
+public class EventIdProvider : ObservableObject {
     
-    let _publishableKey: String
+    public let _publishableKey: String
     
     let urlSession = URLSession(configuration: .default)
     
-    @Published var eventId : Int? = nil
-    @Published var isConnected : Bool = false
+    @Published public var eventId : Int? = nil
+    @Published public var isConnected : Bool = false
     
     private func connect () {
         let url = URL(string: "wss://backend.shanghai.technology?authKey=\(_publishableKey)")!
@@ -36,7 +36,7 @@ class EventIdProvider : ObservableObject {
         webSocketTask.resume()
     }
     
-    init(publishableKey: String) {
+    public init(publishableKey: String) {
         _publishableKey = publishableKey
         connect();
     }
